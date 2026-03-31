@@ -23,9 +23,9 @@ class VideoProcessor:
         elif self.effect == "Sepia":
             base = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             kernel = np.array([
-                [0.272, 0.534, 0.131],
+                [0.393, 0.769, 0.189],
                 [0.349, 0.686, 0.168],
-                [0.393, 0.769, 0.189]
+                [0.272, 0.534, 0.131]
             ])
             sepia = cv2.transform(base, kernel)
             sepia = np.clip(sepia, 0, 255)
