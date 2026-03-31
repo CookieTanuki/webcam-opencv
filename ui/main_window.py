@@ -1,13 +1,15 @@
 import cv2
 
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QComboBox
 from PyQt6.QtGui import QImage, QPixmap
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, pyqtSignal
 
 from video.worker import VideoWorker
 from utils.fps_counter import FPSCounter
 
 class MainWindow(QWidget):
+    effect_changed = pyqtSignal(str)
+
     def __init__(self):
         super().__init__()
 
@@ -28,6 +30,18 @@ class MainWindow(QWidget):
         self.worker = VideoWorker()
         self.worker.frame_ready.connect(self.update_frame)
         self.worker.start()
+
+        self.effect_box = QComboBox()
+        self.effect_box.addItems([
+            "None",
+            "Negative",
+            "Grayscale",
+        ])
+
+        self.effect_changed.connect(self.worker.set_effect)
+        self.effect_box.currentTextChanged.connect(self.effect_changed.emit)
+
+        layout.addWidget(self.effect_box)
 
     def update_frame(self, frame):
         fps = self.fps_counter.update()
