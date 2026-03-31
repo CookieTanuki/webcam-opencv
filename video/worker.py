@@ -1,4 +1,4 @@
-from PyQt6.QtCore import QThread, pyqtSignal
+from PyQt6.QtCore import QThread, pyqtSignal, pyqtSlot
 
 from .capture import VideoCapture
 from .processor import VideoProcessor
@@ -25,6 +25,10 @@ class VideoWorker(QThread):
             self.frame_ready.emit(processed)
 
         self.capture.release()
+
+    @pyqtSlot(str)
+    def set_effect(self, effect):
+        self.processor.set_effect(effect)
 
     def stop(self):
         self.running = False
