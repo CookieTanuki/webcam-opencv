@@ -51,3 +51,7 @@ class MainWindow(QWidget):
     def closeEvent(self, event):
         self.worker.stop()
         event.accept()
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key.Key_Q:
+            self.close()
