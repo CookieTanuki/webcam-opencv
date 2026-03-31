@@ -62,3 +62,7 @@ python main.py
 2. Allow camera access if your operating system asks for permission.
 3. Use the dropdown in the window to switch between effects.
 4. Press `Q` or close the window to exit.
+
+## Program interface
+
+<img width="1432" height="718" alt="Screenshot 2026-03-31 at 13 54 02" src="https://github.com/user-attachments/assets/a721d6df-c860-4ae5-9f0c-4a7d4e4ade4d" />
