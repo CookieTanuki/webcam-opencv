@@ -2,15 +2,21 @@ import time
 
 
 class FPSCounter:
-    def __init__(self):
+    def __init__(self, interval=0.1):
+        self.interval = interval
+        self.frame_count = 0
+
         self.prev_time = time.time()
         self.fps = 0
 
     def update(self):
+        self.frame_count += 1
         current = time.time()
-        new_fps = 1 / (current - self.prev_time)
-        self.prev_time = current
+        elapsed = current - self.prev_time
 
-        self.fps = 0.9 * self.fps + 0.1 * new_fps
+        if elapsed >= self.interval:
+            self.fps = self.frame_count / elapsed
+            self.frame_count = 0
+            self.prev_time = current
 
         return int(self.fps)
