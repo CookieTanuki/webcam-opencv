@@ -23,7 +23,7 @@ class MainWindow(QWidget):
         layout.addWidget(self.fps_label)
         self.setLayout(layout)
 
-        self.fps_counter = FPSCounter()
+        self.fps_counter = FPSCounter(interval=0.2)
 
         self.worker = VideoWorker()
         self.worker.frame_ready.connect(self.update_frame)

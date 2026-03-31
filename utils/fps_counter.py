@@ -2,7 +2,7 @@ import time
 
 
 class FPSCounter:
-    def __init__(self, interval=0.1):
+    def __init__(self, interval=1):
         self.interval = interval
         self.frame_count = 0
 
