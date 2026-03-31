@@ -36,6 +36,9 @@ class MainWindow(QWidget):
             "None",
             "Negative",
             "Grayscale",
+            "GaussianBlur",
+            "EdgeDetection",
+            "Sepia",
         ])
 
         self.effect_changed.connect(self.worker.set_effect)
